@@ -19,6 +19,9 @@ int main(int argc, char const *argv[])
         cout<<a[i]<<endl;
     }
     
+    // printing the first address of the array
+    cout << a;
+    
 
 
     return 0;
