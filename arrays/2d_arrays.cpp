@@ -2,6 +2,19 @@
 
 using namespace std;
 
+
+
+void input_array(int arr[][3], int n, int m){
+    for (int i = 0; i < n; i++)
+    {
+        for (int j = 0; j < m; j++)
+        {
+            cout << "Enter value for arr[" << i << "][" << j << "]: ";
+            cin >> arr[i][j];
+        }
+    }
+}
+
 void print_array(int arr[][3], int n, int m){
     for (int i = 0; i < n; i++)
     {
