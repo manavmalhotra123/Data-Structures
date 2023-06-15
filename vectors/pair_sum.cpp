@@ -15,8 +15,8 @@ void print_vector(vector<int> v)
 
 int main()
 {
-    vector<int> v = {1, 3, 5, 7,0,9};
-    vector<int> v1 = {2, 4, 6,9,0};
+    vector<int> v = {1, 3, 5, 7, 0, 9};
+    vector<int> v1 = {2, 4, 6, 9, 0};
     print_vector(v1);
     print_vector(v);
 
@@ -34,6 +34,8 @@ int main()
                 cout << "Pair " << count << " : " << v[i] << " and " << v1[j] << endl;
             }
         }
+
+    cout<< "Total number of pairs found are " << count << endl;
 
     return 0;
 }
