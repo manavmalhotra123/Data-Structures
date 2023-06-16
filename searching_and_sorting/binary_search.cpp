@@ -42,7 +42,9 @@ void binary_search(vector<int> &v, int value)
 
     while (start <= end)
     {
-        int mid = (start + end) / 2;
+        //int mid = (start + end) / 2;
+        
+        int mid = start + (end - start)/2; 
 
         if (value > v[mid])
         {
@@ -75,7 +77,9 @@ int main()
     cout << endl;
     print_vector(vals);
 
-    binary_search(vals, 1);
+    binary_search(vals, 0);
+    cout<<endl;
+    binary_search(vals, 50);
 
     return 0;
 }
