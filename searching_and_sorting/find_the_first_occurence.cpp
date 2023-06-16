@@ -69,13 +69,13 @@ int main()
 
     // Measure time taken by find_first_occurrence
     auto startLinear = high_resolution_clock::now();
-    find_first_occurrence(v, 4);
+    find_first_occurrence(v, 6);
     auto endLinear = high_resolution_clock::now();
     auto durationLinear = duration_cast<microseconds>(endLinear - startLinear);
 
     // Measure time taken by finding_first_occurrence_using_binary_search
     auto startBinary = high_resolution_clock::now();
-    finding_first_occurrence_using_binary_search(v, 4);
+    finding_first_occurrence_using_binary_search(v, 6);
     auto endBinary = high_resolution_clock::now();
     auto durationBinary = duration_cast<microseconds>(endBinary - startBinary);
 
