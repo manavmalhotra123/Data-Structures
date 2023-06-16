@@ -29,7 +29,7 @@ for (int i = 0; i < v.size(); i++)
 
 int missing_element = sum - real_sum;
 
-cout << missing_element << endl;
+cout << "The missing element is "<<missing_element << endl;
 
 }
 
@@ -39,8 +39,7 @@ cout << missing_element << endl;
 
 int main(int argc, char const *argv[])
 {
-    vector<int> v = {1,2,3,4,6,7,8,9};
+    vector<int> v = {1,2,3,4,5,6,7,8,9,11};
     finding_sum_till_largest_number_then_subtrac_from_sum_of_actual_number(v);
-
     return 0;
 }
