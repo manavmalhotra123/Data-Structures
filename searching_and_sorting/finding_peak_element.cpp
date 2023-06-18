@@ -44,12 +44,12 @@ void find_peak(vector<int> &v){
  
 
 int main() {
+
     vector<int> mountain = {0, 10, 5, 2};
 
     findPeakElement(mountain);
 
     find_peak(mountain);
-
 
     return 0;
 }
