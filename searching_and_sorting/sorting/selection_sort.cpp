@@ -6,44 +6,46 @@
 
 using namespace std;
 
-void print_vector(vector<int>& v){
-    cout<<"vector"<<endl;
-    for (int i = 0; i < v.size(); i++)
-    {
-        cout<<v[i]<<" ";
+void print_vector(const std::vector<int>& v) {
+    for (int i = 0; i < v.size(); i++) {
+        std::cout << v[i] << " ";
     }
-    cout<<endl;
+    std::cout << std::endl;
 }
 
-
-void selection_sort(vector<int>& v){
-
+void selection_sort(std::vector<int>& v) {
     int mini = 0;
-    for (int i = 0; i < v.size(); i++)
-    {
+    int rounds = 0;
+    for (int i = 0; i < v.size(); i++) {
         mini = i;
-        for (int j = i+1; j < v.size(); j++)
-        {
-            if (int(v[j]) < v[mini])
-            {
+        for (int j = i + 1; j < v.size(); j++) {
+            if (v[j] < v[mini]) {
                 mini = j;
             }
         }
-        swap(v[i], v[mini]);
+        rounds++;
+        std::cout << "Round: " << rounds << std::endl;
+        
+        if (v[mini] == v[i]) {
+            std::cout << "No swapping needed" << std::endl;
+        }
+        else
+        {
+            cout<<"Swapping between "<<v[i]<<" and " <<v[mini]<<endl;
+        }
+        
+        std::swap(v[i], v[mini]);
+        cout<<"Round "<<rounds<<" Result: "<<endl;;
+        print_vector(v);
+        cout<<endl;
+        cout<<"-----------------------------------------------------------------------"<<endl;
     }
-    
-    print_vector(v);
-    
 }
 
-int main(){
-    vector<int> v = { 1,2,3,5,9,10,13,14,11};
+int main() {
+    std::vector<int> v = { 1, 2, 3, 5, 9, 10, 13, 14, 11 };
     print_vector(v);
     selection_sort(v);
 
-    // case 2: vector values are 5,4,3,2,1
-    vector<int> v1 = {5,4,3,2,1};
-    print_vector(v1);
-    selection_sort(v1);
     return 0;
 }
