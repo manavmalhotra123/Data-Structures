@@ -45,7 +45,7 @@ int solve(vector<int> arr) {
     }
     mid = s + (e - s) / 2; // Recalculate midpoint
   }
-
+  
   return -1; // Number not found, should not reach here
 }
 
