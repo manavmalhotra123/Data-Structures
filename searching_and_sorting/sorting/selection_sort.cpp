@@ -46,6 +46,6 @@ int main() {
     std::vector<int> v = { 1, 2, 3, 5, 9, 10, 13, 14, 11 };
     print_vector(v);
     selection_sort(v);
-
+    
     return 0;
 }
