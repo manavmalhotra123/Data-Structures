@@ -40,5 +40,10 @@ int main(){
     vector<int> v = { 1,2,3,5,9,10,13,14,11};
     print_vector(v);
     selection_sort(v);
+
+    // case 2: vector values are 5,4,3,2,1
+    vector<int> v1 = {5,4,3,2,1};
+    print_vector(v1);
+    selection_sort(v1);
     return 0;
 }
