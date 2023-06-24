@@ -24,7 +24,7 @@ void remove_duplicates(const std::string& input) {
 }
 
 int main() {
-    std::string input = "manav malhotra";
+    std::string input = "abaaabbbbaaaccdde";
     std::cout << input << std::endl;
 
     remove_duplicates(input);
