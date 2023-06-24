@@ -14,7 +14,7 @@ void print_vector(vector<char> &v)
 }
 
 
-
+// end te start de elements nu swap krna te start nu age lyi jaana te end nu piche until unless start < end haiga
 void reverse_string(vector<char> &v){
     int start = 0;
     int end = v.size()-1;
