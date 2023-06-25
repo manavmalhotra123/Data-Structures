@@ -18,5 +18,12 @@ int main(int argc, char const *argv[])
     cout << b << endl;
     cout << &b << endl;
 
+
+    // pointer ek aisa data-type hai jo ki sirf address ko store krta hai 
+    // int* is the pointer to integer data
+    int* ptr = &a;   // storing  the address of the variable in ptr vairiable
+    cout<<ptr<<endl; // will print the address of the variable a
+    cout<<*ptr<<endl; // will print the value of the variable that is allocated to the variable
+
     return 0;
 }
