@@ -2,7 +2,7 @@
 #include <cmath>
 #include <vector>
 
-
+using namespace std;
 // Navie approach - time complexity O(N)
 bool NavieMethod(int number) {
     if (number < 2)
