@@ -25,5 +25,7 @@ int main(int argc, char const *argv[])
     cout<<ptr<<endl; // will print the address of the variable a
     cout<<*ptr<<endl; // will print the value of the variable that is allocated to the variable
 
+    // * is the dereference operator
+
     return 0;
 }
