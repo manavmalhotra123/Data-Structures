@@ -23,9 +23,15 @@ int main(int argc, char const *argv[])
     // int* is the pointer to integer data
     int* ptr = &a;   // storing  the address of the variable in ptr vairiable
     cout<<ptr<<endl; // will print the address of the variable a
+    cout<<ptr+1 << endl; // will print the address of the variable
     cout<<*ptr<<endl; // will print the value of the variable that is allocated to the variable
 
     // * is the dereference operator
+    // size of the pointer is always 8 (architecture dependent)
 
+
+    // NULL pointer 
+    int* p = 0;
+    int* v = NULL;
     return 0;
 }
