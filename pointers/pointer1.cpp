@@ -33,5 +33,26 @@ int main(int argc, char const *argv[])
     // NULL pointer 
     int* p = 0;
     int* v = NULL;
+
+
+    cout<<"Array pointer arithmetic"<<endl;
+    // creating an array 
+    int arr[4] = {0,1,2,3};
+    cout<<"ELement 1"<<endl;
+    cout<<arr[0]<<endl;
+    cout<<*(arr)<<endl;
+    cout<<arr<<endl;
+    cout<<&arr[0]<<endl;
+    cout<<"ELement 2"<<endl;
+    cout<<arr[1]<<endl;
+    cout<<*(arr+1)<<endl;
+    cout<<arr+1<<endl;
+    cout<<&arr[1]<<endl;
+
+    char m[5] = {'m','a','n','a','v'};
+    cout<<m<<endl; // it will print the whole array instead of address of base as we get in integer array 
+    cout<<*(m)<<endl; // it wil print the first character
+    cout<<m+2<<endl;
+
     return 0;
 }
