@@ -33,7 +33,8 @@ int power(int n){
 int main() {
     int n = 4;
     power_n(n);
- 
+
+
 
     int val = power(n);
     cout<<val<<endl;
