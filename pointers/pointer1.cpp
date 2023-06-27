@@ -52,7 +52,7 @@ int main(int argc, char const *argv[])
     char m[5] = {'m','a','n','a','v'};
     cout<<m<<endl; // it will print the whole array instead of address of base as we get in integer array 
     cout<<*(m)<<endl; // it wil print the first character
-    cout<<m+2<<endl;
+    cout<<m+2<<endl; // it will print the string from second index till last 
 
     return 0;
 }
