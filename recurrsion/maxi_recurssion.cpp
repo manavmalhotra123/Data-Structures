@@ -36,7 +36,7 @@ void maxi_using_loop(vector<int> &v){
         }
     }
     cout<<"maximum element is "<<maxi<<endl;
-    
+
 }
 
 int main(int argc, char const *argv[])
