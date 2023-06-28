@@ -15,11 +15,13 @@ void print_vector_using_loop(vector<int> &v){
 
 // Approach 2: using recursion
 void print_vector_recursive(const vector<int>& vec, int index) {
+    // base condition 
     if (index >= vec.size()) {
         return;
     }
     
     cout << vec[index] << " ";
+    // process each element
     print_vector_recursive(vec, index + 1);
 }
 
