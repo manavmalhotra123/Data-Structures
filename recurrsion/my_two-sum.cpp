@@ -29,7 +29,7 @@ int solve(vector<int>& input, int target) {
 }
 
 int main() {
-    vector<int> input = {1, 2, 3}; // Input vector
+    vector<int> input = {1, 2}; // Input vector
     int target = 5; // Target sum
 
     int mini = solve(input, target); // Call the solve function to find the minimum count
