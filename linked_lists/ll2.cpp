@@ -67,6 +67,21 @@ void print(Node *&head)
     cout << "NULL" << endl;
 }
 
+// Linear search function in linked list 
+void LinearSearch(Node* head, int target){
+    Node* temp = head;
+    int position = 0;
+    while (temp != NULL)
+    {
+        position ++;
+        if (temp->data == target)
+        {
+            cout<<"Element found at position "<<position<<endl;
+        }
+        temp = temp->next;
+    }
+}
+
 int main(int argc, char const *argv[])
 {
     Node *head = NULL;
@@ -76,6 +91,10 @@ int main(int argc, char const *argv[])
     print(head);
     AtEnd(head, 56);
     print(head);
+
+    // search function in linked list
+    LinearSearch(head,20);
+
 
     return 0;
 }
