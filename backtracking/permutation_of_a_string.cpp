@@ -1,3 +1,6 @@
+// backtracking is the special case of the case of recurssion 
+
+
 #include <iostream>
 #include <algorithm>
 #include <string>
@@ -23,6 +26,13 @@ void print_permutation(string &str, int index)
         print_permutation(str, index + 1);
 
         // backtracking -- why ????    
+        /* reason : as we passed the string by reference 
+        here so after each call the string will get 
+        changed hence we need to reserve the original 
+        string in order to get all the possible
+        combinations without any duplication so we 
+        are just reversing the previous swap to 
+        maintain the original string */
         swap(str[index], str[j]);
     }
 }
