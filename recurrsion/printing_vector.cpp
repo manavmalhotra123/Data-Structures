@@ -64,5 +64,6 @@ int main(int argc, char const *argv[])
     
     // print the number in ascending order
     print_using_recursion_in_ascending(n);
+    
     return 0;
 }
