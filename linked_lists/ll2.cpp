@@ -59,27 +59,29 @@ void AtEnd(Node *&head, int data)
     }
 }
 
-
-// insert the value at some position in linked list 
-// Step 1: reach to the before position element 
-// Step 2: update the pointer to the inserting node 
-// Step 3: update the pointer of the inserted node to the next position node 
-void BetweenInsert(Node* head, int position, int value) {
-    Node* temp = head;
-    Node* newnode = new Node(value);
+// insert the value at some position in linked list
+// Step 1: reach to the before position element
+// Step 2: update the pointer to the inserting node
+// Step 3: update the pointer of the inserted node to the next position node
+void BetweenInsert(Node *head, int position, int value)
+{
+    Node *temp = head;
+    Node *newnode = new Node(value);
     int count = 1;
-    
-    while (count < position - 1 && temp != NULL) {
+
+    while (count < position - 1 && temp != NULL)
+    {
         count++;
         temp = temp->next;
     }
-    
-    if (temp == NULL) {
+
+    if (temp == NULL)
+    {
         // Position exceeds the length of the list
         delete newnode; // Clean up memory allocated for newnode
         return;
     }
-    
+
     newnode->next = temp->next;
     temp->next = newnode;
 }
@@ -112,6 +114,49 @@ void LinearSearch(Node *head, int target)
     }
 }
 
+// finding the length of the linked list
+void FindLength(Node *head)
+{
+    Node *temp = head;
+    int length = 0;
+    while (temp != NULL)
+    {
+        length++;
+        temp = temp->next;
+    }
+    cout << "Length " << length << endl;
+}
+
+// deletion function likhna hai ab yha pr merko linked lists ka
+// Step 1: element ki position dhundo jo delete krna hai
+// Step 2: us node ko uda do
+// Step 3: pichle node to next te next se attach krdo simple
+void DeleteByElement(Node*& head, int target)
+{
+    Node* temp = head;
+
+    // Handle the case where the target value is at the beginning of the list
+    if (temp != nullptr && temp->data == target)
+    {
+        head = temp->next;
+        delete temp;
+        return;
+    }
+
+    // Search for the target value in the rest of the list
+    while (temp != nullptr)
+    {
+        if (temp->next != nullptr && temp->next->data == target)
+        {
+            Node* nodeToDelete = temp->next;
+            temp->next = temp->next->next;
+            delete nodeToDelete;
+            return;
+        }
+        temp = temp->next;
+    }
+}
+
 int main(int argc, char const *argv[])
 {
     Node *head = NULL;
@@ -129,7 +174,15 @@ int main(int argc, char const *argv[])
     int val = 90;
     int position = 3;
     BetweenInsert(head, position, val);
-    
+
+    print(head);
+
+    // finding the length
+    FindLength(head);
+
+    // deleting the node by value
+    DeleteByElement(head, val);
+
     print(head);
 
     return 0;
