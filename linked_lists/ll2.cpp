@@ -157,6 +157,7 @@ void DeleteByElement(Node*& head, int target)
     }
 }
 
+
 int main(int argc, char const *argv[])
 {
     Node *head = NULL;
