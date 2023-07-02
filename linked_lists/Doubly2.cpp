@@ -68,6 +68,34 @@ void Inbew(Node* &head, int position, int data) {
     }
 }
 
+//  Delete the node by it's value
+void DeleteNode(Node* &head, int target){
+    // temp node for tracking the position
+    Node* temp = head;
+    // Find the node to delete
+    while (temp != NULL && temp->data != target)
+    {
+        temp = temp->next;
+    }
+    // if the node is foiund 
+    if (temp != NULL)
+    {
+        // update the prevous reference
+        if (temp->prev != NULL)
+        {
+            temp->prev->next = temp->next;
+        }
+        else
+        {
+            head = temp->next;
+        }
+        if (temp->next != NULL)
+        {
+            temp->next->prev = temp->prev;
+        }
+        delete temp;
+    }
+}
 
 // length of the doubly linked list 
 void LenghtList(Node* &head){
@@ -109,5 +137,9 @@ int main(int argc, char const *argv[])
     LenghtList(head);
 
     LinearSearch(head,4);
+
+
+    DeleteNode(head,4);
+    Display(head);
     return 0;
 }
