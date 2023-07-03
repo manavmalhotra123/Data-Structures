@@ -13,26 +13,28 @@ public:
     }
 };
 
+// Function to delete duplicates from a linked list
 void deleteDuplicates(ListNode* head) {
     if (!head)
-        return;
+        return;  // If the list is empty, return
 
-    ListNode* slow = head;
-    ListNode* fast = head->next;
+    ListNode* slow = head;  // Slow pointer starts at the head
+    ListNode* fast = head->next;  // Fast pointer starts one node ahead of the slow pointer
 
     while (fast) {
-        if (slow->val == fast->val) {
-            ListNode* temp = fast;
-            fast = fast->next;
-            slow->next = fast;
-            delete temp;
+        if (slow->val == fast->val) {  // If duplicate node is found
+            ListNode* temp = fast;  // Store the duplicate node in a temporary variable
+            fast = fast->next;  // Move the fast pointer ahead
+            slow->next = fast;  // Adjust the slow pointer's next to skip the duplicate node
+            delete temp;  // Delete the duplicate node to free memory
         } else {
-            slow = slow->next;
-            fast = fast->next;
+            slow = slow->next;  // Move the slow pointer ahead
+            fast = fast->next;  // Move the fast pointer ahead
         }
     }
 }
 
+// Function to print the linked list
 void printList(ListNode* head) {
     ListNode* current = head;
     while (current) {
