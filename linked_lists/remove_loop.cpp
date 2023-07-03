@@ -49,6 +49,16 @@ bool detectAndRemoveLoop(Node* head) {
     return false;
 }
 
+// print the linked list 
+void print(Node *head){
+    Node* current = head;
+    while (current->next != NULL){
+        cout<<current->data<<"-->";
+        current = current->next;
+    }
+    cout<<"NULL"<<endl;
+}
+
 int main() {
     Node* one = new Node(1);
     Node* two = new Node(2);
@@ -70,6 +80,8 @@ int main() {
     } else {
         cout << "No loop found." << endl;
     }
+
+    print(one);
 
     return 0;
 }
