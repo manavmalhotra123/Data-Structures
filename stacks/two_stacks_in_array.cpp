@@ -69,6 +69,25 @@ public:
             cout << "STACK 2 is empty!!" << endl;
         }
     }
+
+
+    void Show(){
+        cout<<"Stack 1:"<<endl;
+        for (int i = top1; i >= 0; i--)
+        {
+            cout<<arr[i]<<endl;
+        }
+
+        cout<<endl;
+
+        cout<<"Stack 2:"<<endl;
+        for (int j = top2; j < size; j++)
+        {
+            cout<<arr[j]<<endl;
+        }
+        
+        
+    }
 };
 
 int main(int argc, char const *argv[])
@@ -79,6 +98,8 @@ int main(int argc, char const *argv[])
     stacks.push1(2);
     stacks.push2(3);
     stacks.push2(4);
+
+    stacks.Show();
 
     stacks.pop1();
     stacks.pop2();
