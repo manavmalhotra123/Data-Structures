@@ -40,8 +40,6 @@ void sortStack(stack<int>& original)
     }
 }
 
-
-
 int main(int argc, char const *argv[])
 {
     stack <int> st;
@@ -50,11 +48,11 @@ int main(int argc, char const *argv[])
     st.push(1);
     st.push(2);
 
-    Show(st);
+    Show(st);  // Display the original stack
 
+    sortStack(st);  // Sort the stack
 
-    sortStack(st);
+    Show(st);  // Display the sorted stack
 
-    Show(st);
     return 0;
 }
