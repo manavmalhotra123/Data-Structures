@@ -6,6 +6,17 @@
 
 using namespace std;
 
+void ShowQueue(queue<int> input){
+    cout<<"Queue: ";
+    while (!input.empty())
+    {
+        cout<<input.front()<<" ";
+        input.pop();
+    }
+    cout<<endl;
+}
+
+
 int main(int argc, char const *argv[])
 {
     queue<int> q;
@@ -23,5 +34,8 @@ int main(int argc, char const *argv[])
     cout<<q.front()<<endl;
     // checking the size of the queue
     cout<<q.size()<<endl;
+
+    // Print the queue
+    ShowQueue(q);
     return 0;
 }
