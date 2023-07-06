@@ -21,5 +21,7 @@ int main(int argc, char const *argv[])
     // the last person in the queue who wants to get served
     cout<<q.back()<<endl;
     cout<<q.front()<<endl;
+    // checking the size of the queue
+    cout<<q.size()<<endl;
     return 0;
 }
