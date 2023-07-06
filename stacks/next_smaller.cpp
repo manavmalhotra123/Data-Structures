@@ -53,7 +53,5 @@ int main(int argc, char const *argv[])
     vector<int> result = next_mini(v);
     ShowVector(result);
 
-    vector<int> my = solve(v);
-    ShowVector(my);
     return 0;
 }
