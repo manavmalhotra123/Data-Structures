@@ -1,6 +1,7 @@
 #include<iostream>
 #include<vector>
 #include<stack>
+#include<algorithm>
 
 using namespace std;
 
@@ -43,6 +44,31 @@ vector<int> next_mini(vector<int> &v){
         }
     }
     // return the number
+    return track;
+}
+
+
+// time complexity O(N)
+
+vector<int> solve(vector<int>& input) {
+    vector<int> track;
+    stack<int> finder;
+
+    for (int i = input.size() - 1; i >= 0; i--) {
+        while (!finder.empty() && input[i] < finder.top()) {
+            finder.pop();
+        }
+        if (finder.empty()) {
+            track.push_back(-1); // Indicator for not finding a next minimum element
+        } else {
+            track.push_back(finder.top()); // Add the next minimum element to the track vector
+        }
+        finder.push(input[i]);
+    }
+
+    // Reverse the track vector to match the original order
+    reverse(track.begin(), track.end());
+
     return track;
 }
 
