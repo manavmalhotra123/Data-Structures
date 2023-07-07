@@ -37,5 +37,6 @@ int main(int argc, char const *argv[])
 
     // Print the queue
     ShowQueue(q);
+    
     return 0;
 }
