@@ -36,10 +36,11 @@ void interleave(queue<int> &input)
     
     while (!first.empty() && !second.empty())
     {
-        input.push(second.front());
-        second.pop();
         input.push(first.front());
         first.pop();
+   
+        input.push(second.front());
+        second.pop();
     }
 
     Show(input);
