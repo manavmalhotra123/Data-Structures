@@ -74,9 +74,6 @@ class Queue
             friend void show(Queue Q);
 };
 
-void show(Queue Q){
-  
-}
 
 int main(int argc, char const *argv[])
 {
