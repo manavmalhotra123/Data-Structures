@@ -21,7 +21,7 @@ public:
     }
 };
 
-TreeNode* BuildTree()
+TreeNode *BuildTree()
 {
     int data;
     cout << "Enter Data: ";
@@ -33,21 +33,45 @@ TreeNode* BuildTree()
 
     TreeNode *root = new TreeNode(data);
 
-
-    cout << "Currently at node " << root->data <<"choose for left "<< endl;
+    cout << "Currently at node " << root->data << " choose for left " << endl;
     root->left = BuildTree();
-    
 
-
-    cout << "Currently at node " << root->data <<" choose for right "<< endl;
+    cout << "Currently at node " << root->data << " choose for right " << endl;
     root->right = BuildTree();
-
 
     return root;
 }
 
+void Show(TreeNode *root)
+{
+    cout<<"Tree Data: ";
+    queue<TreeNode *> Q;
+    Q.push(root);
+
+    while (!Q.empty())
+    {
+        TreeNode *temporary = Q.front();
+
+        Q.pop();
+
+        cout << temporary->data << " ";
+
+        if (temporary->left)
+        {
+            Q.push(temporary->left);
+        }
+        if (temporary->right)
+        {
+            Q.push(temporary->right);
+        }
+    }
+    cout<<endl;
+}
+
 int main(int argc, char const *argv[])
 {
+
     TreeNode *root = BuildTree();
+    Show(root);
     return 0;
 }
