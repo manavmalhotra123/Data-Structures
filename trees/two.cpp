@@ -3,6 +3,7 @@
 #include <vector>
 #include <stack>
 #include <algorithm>
+#include <queue>
 
 using namespace std;
 
@@ -47,12 +48,45 @@ TreeNode* buildTree(){
 }
 
 
+void ShowTreeUsingLevelOrderTraversal(TreeNode* root){
+
+    cout<<"Tree using level order traversal: ";
+
+    // initially ek queue li 
+    queue<TreeNode*> Q;
+    // queue mai humne root daal di tree ki 
+    Q.push(root);
+
+    // till the queue is not empty
+    while (!Q.empty())
+    {
+
+        // Step 1: take the first element of the queue
+        TreeNode* temp = Q.front();
+        // Step 2: take out that bloody element
+        Q.pop();
+        // Step 3: temp mai jo node aaya uske data ko print maaro 
+        cout<<temp->data<<" ";
+        // Step 4: check for children at left and right if exist then push them to queue
+        if (temp->left)
+        {
+            Q.push(temp->left);
+        }
+        if (temp->right)
+        {
+            Q.push(temp->right);
+        }
+    }
+    cout<<endl;
+    
+}
+
 
 
 int main(int argc, char const *argv[])
 {
    
     TreeNode* root = buildTree();
-    
+    ShowTreeUsingLevelOrderTraversal(root);   
     return 0;
 }
