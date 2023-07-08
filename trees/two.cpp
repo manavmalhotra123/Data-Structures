@@ -47,24 +47,12 @@ TreeNode* buildTree(){
 }
 
 
-// function to print the tree
-void ShowTree(TreeNode* root)
-{
-    if (root == NULL)
-    {
-        cout<<"ERROR:Tree is Empty!"<<endl;
-        return;
-    }
-    cout<<root->left->data;
-    
-}
-
 
 
 int main(int argc, char const *argv[])
 {
    
     TreeNode* root = buildTree();
-    ShowTree(root);
+    
     return 0;
 }
