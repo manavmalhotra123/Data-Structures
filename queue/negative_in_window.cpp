@@ -1,38 +1,57 @@
+// sliding window question 
+// Find the first negative integer in the window of size k 
+
+/*
+    Test Case 1:
+    Given Queue;  12 -1 -7 8 -15 30 16 18
+          Window Size : 3
+
+    Solution: 
+    Window 1: 12 -1 -7       --  (-1)
+    Window 2: -1 -7 8        --  (-1)
+    Window 3: -7 8 -15       --  (-7)
+    Window 4: 8 -15 30       --  (-15)
+    Window 5: -15 30 16      --  (-15)
+    Window 6: 30 16 18       --  (0)
+*/
+
+
+
+// if the given data structure is vector
 #include<iostream>
-#include<queue>
-#include<stack>
+#include<vector>
 
 using namespace std;
 
-void Show(queue<int> input){
-    while (!input.empty())
-    {
-        cout<<input.front()<<" ";
-        input.pop();
-    }
-    cout<<endl;
-}
+int main(int argc, char const *argv[])
+{
+    std::vector<int> v = {12,-1,-7,8,-15,30,16,18};
+    vector<int> output;
 
-
-void Window(queue<int> input, int windowSize){
-    stack<int> s;
-    while (!input.empty())
+    for (int i = 0; i < v.size(); i++)
     {
+        for (int j = i; j < i+4; j++)
+        {
+            if (v[j] < 0)
+            {
+                
+                output.push_back(v[j]);
+                break;
+            }
+            
+        }
         
     }
     
-}
+    // printing the output vector
+    cout<<"Solution: "; 
+    for (int i = 0; i < output.size(); i++)
+    {
+        cout<<output[i]<<" ";
+    }
+    cout<<endl;
+    
+    
 
-int main(int argc, char const *argv[])
-{
-    queue<int> Q;
-    Q.push(12);
-    Q.push(-1);
-    Q.push(-7);
-    Q.push(8);
-    Q.push(-15);
-    Q.push(30);
-    Q.push(16);
-    Q.push(18);
     return 0;
 }
