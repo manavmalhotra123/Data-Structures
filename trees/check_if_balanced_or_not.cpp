@@ -1,22 +1,17 @@
 // Creating a mirror of two binary trees
 /*
-
+    The given tree is balanced if the absolute difference of left and right subtree is less than or equal to 1
 */
-
 #include <iostream>
-#include <vector>
-#include <stack>
+#include <cstdlib>
 #include <algorithm>
-#include <queue>
-
-using namespace std;
 
 class Node
 {
 public:
     int data;
-    Node *R;
-    Node *L;
+    Node* R;
+    Node* L;
     Node(int data)
     {
         this->data = data;
@@ -25,43 +20,68 @@ public:
     }
 };
 
-Node *build()
+Node* build()
 {
     int data;
-    cout << "Enter Value: ";
-    cin >> data;
+    std::cout << "Enter Value: ";
+    std::cin >> data;
     if (data == -1)
     {
         return nullptr;
     }
 
-    Node *root = new Node(data);
+    Node* root = new Node(data);
 
-    cout << "At left of node " << root->data << endl;
+    std::cout << "At left of node " << root->data << std::endl;
     root->L = build();
 
-    cout << "At right of node " << root->data << endl;
+    std::cout << "At right of node " << root->data << std::endl;
     root->R = build();
 
     return root;
 }
 
-// check if the binary tree is balanced or not
-bool isbalanced(Node *root)
+int height(Node* root)
 {
+    if (root == nullptr)
+    {
+        return 0;
+    }
 
+    int Lheight = height(root->L);
+    int Rheight = height(root->R);
+
+    int ans = std::max(Lheight, Rheight) + 1;
+    return ans;
 }
 
-int main(int argc, char const *argv[])
+bool isbalanced(Node* root)
 {
-    Node *root = build();
+    if (root == nullptr)
+    {
+        return true;
+    }
+
+    bool LSub = isbalanced(root->L);
+    int Lhigh = height(root->L);
+    bool RSub = isbalanced(root->R);
+    int Rhigh = height(root->R);
+
+    bool check = LSub && RSub && (std::abs(Lhigh - Rhigh) <= 1);
+
+    return check;
+}
+
+int main()
+{
+    Node* root = build();
     if (isbalanced(root))
     {
-        cout << "Trees is balanced!!!" << endl;
+        std::cout << "Tree is balanced!!!" << std::endl;
     }
     else
     {
-        cout << "Tree is not balanced!!!" << endl;
+        std::cout << "Tree is not balanced!!!" << std::endl;
     }
 
     return 0;
