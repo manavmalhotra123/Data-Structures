@@ -51,7 +51,7 @@ bool check(Node* root_1, Node* root_2){
         return true;
     }
     // if any of them is not null or opposite to other then the nodes are not equal
-    else if((root_1 == nullptr && root_2 != nullptr) || (root_1 != nullptr && root_2 == nullptr)){
+    else if((root_1 == nullptr && root_2 != nullptr) || (root_1 != nullptr && root_2 == nullptr)||(root_1->data != root_2->data)){
         return false;
     }
     

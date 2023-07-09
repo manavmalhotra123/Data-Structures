@@ -36,8 +36,6 @@ void interleave(queue<int> &input)
     
     while (!first.empty() && !second.empty())
     {
-        input.push(first.front());
-        first.pop();
    
         input.push(second.front());
         second.pop();
