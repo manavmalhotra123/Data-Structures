@@ -43,34 +43,6 @@ Node *buildTree()
     return root;
 }
 
-void LevelOrderTraversal(Node *root)
-{
-    cout<<"Tree"<<endl;
-    queue<Node *> Q;
-
-    Q.push(root);
-
-    while (!Q.empty())
-    {
-        Node *temp = Q.front();
-
-        Q.pop();
-
-        cout << temp->data << endl;
-
-        if (temp->left)
-        {
-            Q.push(temp->left);
-        }
-        if (temp->right)
-        {
-            Q.push(temp->right);
-        }
-    }
-
-    cout<<endl;
-}
-
 
 // finding the height of the tree 
 // Approach : find the height to left and right of the root of the tree , evaluate the maximum one and add one to it 
@@ -93,7 +65,6 @@ int HeightoftheTree(Node *root)
 int main(int argc, char const *argv[])
 {
     Node* root = buildTree();
-    LevelOrderTraversal(root);
 
     cout<<"Height of the tree is "<<HeightoftheTree(root)<<endl;
     return 0;
