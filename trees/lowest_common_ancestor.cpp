@@ -77,11 +77,11 @@ TreeNode* lowest_ancestor(TreeNode *root, TreeNode *p, TreeNode *q)
     // Check for p and q
     if (root->data == p->data)
     {
-        return p;
+        return root;
     }
     if (root->data == q->data)
     {
-        return q;
+        return root;
     }
 
     // if dono upar waale cases mai se kuch nhi mila to left ka answer nikaal le
