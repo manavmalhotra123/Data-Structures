@@ -50,7 +50,6 @@ vector<int> solve(vector<int> &v1, vector<int> &v2)
     }
 
     vector<int> result(helper.begin(),helper.end());
-    sort(result.begin(),result.end());
     
     return result;
 }
