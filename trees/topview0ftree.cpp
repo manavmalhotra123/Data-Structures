@@ -1,11 +1,11 @@
-// Top View of the tree
+// Top View and Bottom View of the tree
 
 // horizontal distance se hoga yeh question
 /*
 root ko origin maan lo aur aage ko +1 aur piche ko -1
 isme jo pehle pehle are hai upr upr unko print krdo
 
-horizontal distance aur node ko store krne 
+horizontal distance aur node ko store krne
 ke liye maps use krenge
 */
 
@@ -31,6 +31,8 @@ Tree example:
 
 Top View : jo element upr se dekhne pr dikhe bs baaki saare chod do
 Top View: 30 20 10 50 90 100
+
+Bottom View: jo element niche se dekhne pr dikhe bs
 */
 
 class Node
@@ -69,61 +71,113 @@ void LevelOrder(Node *root)
     }
 }
 
-
-// TopView nikaalte hai ab 
-void PrintTopView(Node* root)
+// TopView nikaalte hai ab
+void PrintTopView(Node *root)
 {
-    //Base Case 
+    // Base Case
     if (root == nullptr)
     {
         return;
     }
-    
-    // map to keep the record of 
+
+    // map to keep the record of
     // node data and it's horzontal distance
-    map<int,int> topNode;
+    map<int, int> topNode;
 
-    // level order traversal krte ab 
-    // storing the pair of the node data and 
+    // level order traversal krte ab
+    // storing the pair of the node data and
     // the horzontal distance
-    queue< pair<Node*,int>> Q;
+    queue<pair<Node *, int>> Q;
 
-    Q.push(make_pair(root,0));
+    Q.push(make_pair(root, 0));
 
     while (!Q.empty())
     {
         // Pair of node and distance
-        pair<Node*,int> temp = Q.front();
-        // front pair ko bhar nikaal do 
+        pair<Node *, int> temp = Q.front();
+        // front pair ko bhar nikaal do
         Q.pop();
 
-        // Node aur distance ko alag krdo 
-        Node* tempNode = temp.first;
+        // Node aur distance ko alag krdo
+        Node *tempNode = temp.first;
         int distance = temp.second;
 
-        // store krni hai ya nhi ab yeh dekhna hai 
+        // store krni hai ya nhi ab yeh dekhna hai
         // mtlb ek distance ki ek hi value uthaani hai
         if (topNode.find(distance) == topNode.end())
         {
-            topNode[distance] = tempNode->data;    
+            topNode[distance] = tempNode->data;
         }
 
-        // left mai check kro 
+        // left mai check kro
         if (tempNode->L)
         {
-            Q.push(make_pair(tempNode->L,distance-1));
+            Q.push(make_pair(tempNode->L, distance - 1));
         }
         if (tempNode->R)
         {
-            Q.push(make_pair(tempNode->R,distance+1));
+            Q.push(make_pair(tempNode->R, distance + 1));
         }
     }
 
-    cout<<"Top View :";
-    for(auto i:topNode){
-        cout<<i.second<<" ";
+    cout << "Top View :";
+    for (auto i : topNode)
+    {
+        cout << i.second << " ";
     }
-    
+}
+
+void PrintBottomView(Node *root)
+{
+    // Base Case
+    if (root == nullptr)
+    {
+        return;
+    }
+
+    // map to keep the record of
+    // node data and it's horzontal distance
+    map<int, int> BottomNode;
+
+    // level order traversal krte ab
+    // storing the pair of the node data and
+    // the horzontal distance
+    queue<pair<Node *, int>> Q;
+
+    Q.push(make_pair(root, 0));
+
+    while (!Q.empty())
+    {
+        // Pair of node and distance
+        pair<Node *, int> temp = Q.front();
+        // front pair ko bhar nikaal do
+        Q.pop();
+
+        // Node aur distance ko alag krdo
+        Node *tempNode = temp.first;
+        int distance = temp.second;
+
+        // store krni hai ya nhi ab yeh dekhna hai
+        // mtlb ek distance ki ek hi value uthaani hai
+
+        BottomNode[distance] = tempNode->data;
+
+        // left mai check kro
+        if (tempNode->L)
+        {
+            Q.push(make_pair(tempNode->L, distance - 1));
+        }
+        if (tempNode->R)
+        {
+            Q.push(make_pair(tempNode->R, distance + 1));
+        }
+    }
+
+    cout << "Top View :";
+    for (auto i : BottomNode)
+    {
+        cout << i.second << " ";
+    }
 }
 
 int main(int argc, char const *argv[])
@@ -143,13 +197,12 @@ int main(int argc, char const *argv[])
     root->R->R->R = new Node(100);
     root->R->R->L = new Node(80);
 
-
-    cout<<"Tree: ";
+    cout << "Tree: ";
     LevelOrder(root);
-    cout<<endl;
+    cout << endl;
 
     PrintTopView(root);
-    
 
+    PrintBottomView(root);
     return 0;
 }
