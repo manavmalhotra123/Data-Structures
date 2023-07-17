@@ -18,6 +18,7 @@ Example a sorted array is given;
 
 using namespace std;
 
+// Tree Node Class
 class Node
 {
 public:
@@ -32,24 +33,28 @@ public:
     }
 };
 
+// Condition to insert the node into the tree
 Node *InsertIntoBST(Node *root, int data)
 {
+    // if root hi khaali hai toh whi node bnaade
     if (root == nullptr)
     {
         root = new Node(data);
     }
     else if (data < root->data)
     {
+        // agr data root ke data se chota toh left
         root->left = InsertIntoBST(root->left, data);
     }
     else
     {
+        // otherwise right
         root->right = InsertIntoBST(root->right, data);
     }
-
     return root;
 }
 
+// Function to take simuntaneous inputs
 void TakeInput(Node *&root)
 {
     int data;
@@ -57,6 +62,7 @@ void TakeInput(Node *&root)
 
     while (data != -1)
     {
+        // function to insert the value in the BST
         root = InsertIntoBST(root, data);
         cin >> data;
     }
