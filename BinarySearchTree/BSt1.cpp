@@ -136,6 +136,36 @@ void PreOrderTraversal(Node *root)
     
 }
 
+void SearchInBST(Node* root, int element)
+{
+    if (root == nullptr)
+    {
+        cout << "Tree is empty" << endl;
+        return;
+    }
+
+    while (root->left != nullptr && root->right != nullptr)
+    {
+        if (root->data == element)
+        {
+            cout << "Element Found" << endl;
+            return;
+        }
+        else if (root->data > element)
+        {
+            root = root->left;
+        }
+        else
+        {
+            root = root->right;
+        }
+    }
+
+    cout << "Element not found" << endl;
+}
+
+
+
 
 int main()
 {
