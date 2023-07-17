@@ -97,12 +97,60 @@ void LevelOrderTraversal(Node *root)
     }
 }
 
+void InorderTraversal(Node *root){
+
+    if (root == nullptr)
+    {
+        return;
+    }
+    
+    // LNR - left node right
+    InorderTraversal(root->left);
+    cout<<root->data << " ";
+    InorderTraversal(root->right);
+}
+
+
+// LRN 
+void postOrderTraversal(Node* root) {
+    if (root == nullptr) {
+        return;
+    }
+
+    postOrderTraversal(root->left);
+    postOrderTraversal(root->right);
+    cout << root->data << " ";
+}
+
+void PreOrderTraversal(Node *root)
+{
+    
+    if (root == NULL) 
+    {
+        return;
+    }
+    cout<<root->data<<" ";
+    
+    PreOrderTraversal(root->left);
+    PreOrderTraversal(root->right);
+    
+}
+
+
 int main()
 {
     Node *root = nullptr;
     cout << "Enter the data for the nodes (enter -1 to stop): ";
     TakeInput(root);
+    cout<<"level Order Traversal"<< endl;
     LevelOrderTraversal(root);
+    cout<<endl;
+    cout<<"Pre-Order Traversal"<<endl;
+    PreOrderTraversal(root);
+    cout<<"In-Order Traversal"<<endl;
+    InorderTraversal(root);
+    cout<<"Post-Order Traversal"<<endl;
+    postOrderTraversal(root);
 
     cout << endl;
 
