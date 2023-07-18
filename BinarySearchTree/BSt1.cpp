@@ -18,6 +18,8 @@ Example a sorted array is given;
 
 using namespace std;
 
+bool enable = false;
+
 // Tree Node Class
 class Node
 {
@@ -97,23 +99,25 @@ void LevelOrderTraversal(Node *root)
     }
 }
 
-void InorderTraversal(Node *root){
+void InorderTraversal(Node *root)
+{
 
     if (root == nullptr)
     {
         return;
     }
-    
+
     // LNR - left node right
     InorderTraversal(root->left);
-    cout<<root->data << " ";
+    cout << root->data << " ";
     InorderTraversal(root->right);
 }
 
-
-// LRN 
-void postOrderTraversal(Node* root) {
-    if (root == nullptr) {
+// LRN
+void postOrderTraversal(Node *root)
+{
+    if (root == nullptr)
+    {
         return;
     }
 
@@ -124,37 +128,41 @@ void postOrderTraversal(Node* root) {
 
 void PreOrderTraversal(Node *root)
 {
-    
-    if (root == NULL) 
+
+    if (root == NULL)
     {
         return;
     }
-    cout<<root->data<<" ";
-    
+    cout << root->data << " ";
+
     PreOrderTraversal(root->left);
     PreOrderTraversal(root->right);
-    
 }
 
-void SearchInBST(Node* root, int element)
+void SearchInBST(Node *root, int element)
 {
+    // if the tree is empty
     if (root == nullptr)
     {
         cout << "Tree is empty" << endl;
         return;
     }
 
-    while (root->left != nullptr && root->right != nullptr)
+    // we have to go till leaf node
+    while (root != nullptr)
     {
+        // if the element is present at node
         if (root->data == element)
         {
             cout << "Element Found" << endl;
             return;
         }
+        // if the element is smaller than root data then left
         else if (root->data > element)
         {
             root = root->left;
         }
+        // oterhwise right
         else
         {
             root = root->right;
@@ -162,9 +170,28 @@ void SearchInBST(Node* root, int element)
     }
 
     cout << "Element not found" << endl;
+    return;
 }
 
+int MinimumValueInBST(Node* root)
+{
+    if (root == nullptr)
+    {
+        if (enable)
+        {
+            cout << "The minimum value is not here" << endl;
+        }
+        return -1;
+    }
 
+    int mini = root->data;
+    while (root->left != nullptr)
+    {
+        mini = root->left->data;
+        root = root->left;
+    }
+    return mini;
+}
 
 
 int main()
@@ -172,14 +199,14 @@ int main()
     Node *root = nullptr;
     cout << "Enter the data for the nodes (enter -1 to stop): ";
     TakeInput(root);
-    cout<<"level Order Traversal"<< endl;
+    cout << "level Order Traversal" << endl;
     LevelOrderTraversal(root);
-    cout<<endl;
-    cout<<"Pre-Order Traversal"<<endl;
+    cout << endl;
+    cout << "Pre-Order Traversal" << endl;
     PreOrderTraversal(root);
-    cout<<"In-Order Traversal"<<endl;
+    cout << "In-Order Traversal" << endl;
     InorderTraversal(root);
-    cout<<"Post-Order Traversal"<<endl;
+    cout << "Post-Order Traversal" << endl;
     postOrderTraversal(root);
 
     cout << endl;
