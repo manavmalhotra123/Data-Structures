@@ -173,7 +173,8 @@ void SearchInBST(Node *root, int element)
     return;
 }
 
-int MinimumValueInBST(Node* root)
+// minimum value of the tree
+int MinimumValueInBST(Node *root)
 {
     if (root == nullptr)
     {
@@ -193,6 +194,26 @@ int MinimumValueInBST(Node* root)
     return mini;
 }
 
+// maximum value in BST
+int MaximumValueInBST(Node *root)
+{
+    if (root == nullptr)
+    {
+        if (enable)
+        {
+            cout << "Tree Empty!!" << endl;
+        }
+        return -1;
+    }
+
+    int maxi = root->data;
+    while (root->right != nullptr)
+    {
+        maxi = root->right->data;
+        root = root->right;
+    }
+    return maxi;
+}
 
 int main()
 {
@@ -210,6 +231,7 @@ int main()
     postOrderTraversal(root);
 
     cout << endl;
-
+    cout << "minimum value: " << MinimumValueInBST(root) << endl;
+    cout << "maximum value: " << MaximumValueInBST(root) << endl;
     return 0;
 }
