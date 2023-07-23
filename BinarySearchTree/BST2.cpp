@@ -112,6 +112,40 @@ int height(Node* root){
     return max(RHeight, LHeight) + 1;
 }
 
+// validating the BST
+
+bool solve(Node *root, int lowerBound, int upperBound)
+{
+    // If the tree is empty, it is still considered a valid BST
+    if (root == nullptr)
+    {
+        return true;
+    }
+
+    // Check if the current node's data violates the BST property
+    if (root->data <= lowerBound || root->data >= upperBound)
+    {
+        return false;
+    }
+
+    // Recursively check the left and right subtrees
+    bool LeftAnswer = solve(root->L, lowerBound, root->data);
+    bool RightAnswer = solve(root->R, root->data, upperBound);
+
+    return LeftAnswer && RightAnswer;
+}
+
+bool isValidate(Node* root)
+{
+    // Use the minimum and maximum possible values for 'int'
+    int lowerBound = INT16_MAX;
+    int upperBound = INT16_MIN;
+    bool ans = solve(root, lowerBound, upperBound);
+
+    return ans;
+}
+// ---------------- validating done --------------
+
 
 int main(int argc, char const *argv[])
 {

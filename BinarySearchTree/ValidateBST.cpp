@@ -1,5 +1,6 @@
 #include <iostream>
 #include <queue>
+#include <climits> // For INT_MIN and INT_MAX
 
 using namespace std;
 
@@ -17,7 +18,7 @@ public:
     }
 };
 
-Node* InsertIntoBST(Node* root, int data)
+Node *InsertIntoBST(Node *root, int data)
 {
     if (root == nullptr)
     {
@@ -36,7 +37,7 @@ Node* InsertIntoBST(Node* root, int data)
     return root;
 }
 
-void TakeInput(Node*& root)
+void TakeInput(Node *&root)
 {
     int data;
     cin >> data;
@@ -47,18 +48,19 @@ void TakeInput(Node*& root)
     }
 }
 
-void LevelOrderTraversal(Node* root){
+void LevelOrderTraversal(Node *root)
+{
     if (root == nullptr)
     {
         return;
     }
-    queue<Node*> Q;
+    queue<Node *> Q;
     Q.push(root);
 
     while (!Q.empty())
     {
-        Node* temp = Q.front();
-        cout << temp->data <<" ";
+        Node *temp = Q.front();
+        cout << temp->data << " ";
         Q.pop();
         if (temp->L)
         {
@@ -71,12 +73,55 @@ void LevelOrderTraversal(Node* root){
     }
 }
 
+bool solve(Node *root, int lowerBound, int upperBound)
+{
+    // If the tree is empty, it is still considered a valid BST
+    if (root == nullptr)
+    {
+        return true;
+    }
+
+    // Check if the current node's data violates the BST property
+    if (root->data <= lowerBound || root->data >= upperBound)
+    {
+        return false;
+    }
+
+    // Recursively check the left and right subtrees
+    bool LeftAnswer = solve(root->L, lowerBound, root->data);
+    bool RightAnswer = solve(root->R, root->data, upperBound);
+
+    return LeftAnswer && RightAnswer;
+}
+
+bool isValidate(Node* root)
+{
+    // Use the minimum and maximum possible values for 'int'
+    int lowerBound = INT_MIN;
+    int upperBound = INT_MAX;
+    bool ans = solve(root, lowerBound, upperBound);
+
+    return ans;
+}
+
 int main()
 {
-    cout << "Enter the values of nodes of BST(Enter -1 to stop)..." << endl;
-    Node* root = nullptr;
+    cout << "Enter the values of nodes of BST (Enter -1 to stop)..." << endl;
+    Node *root = nullptr;
     TakeInput(root);
+    
+    cout << "Level Order Traversal: ";
     LevelOrderTraversal(root);
+    cout << endl;
+    
+    if (isValidate(root))
+    {
+        cout << "The given tree is a valid Binary Search Tree (BST)." << endl;
+    }
+    else
+    {
+        cout << "The given tree is NOT a valid Binary Search Tree (BST)." << endl;
+    }
 
     return 0;
 }
