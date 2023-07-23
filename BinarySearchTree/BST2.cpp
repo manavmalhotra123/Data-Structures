@@ -99,6 +99,20 @@ void TakeInput(Node*& root){ // Pass by reference using '&' to modify the origin
     }
 }
 
+int height(Node* root){
+    if (root == NULL) 
+    {
+        return -1;
+    }
+    int hieght = 0;
+
+    int LHeight = height(root->L);
+    int RHeight = height(root->R);
+
+    return max(RHeight, LHeight) + 1;
+}
+
+
 int main(int argc, char const *argv[])
 {
     cout<<"Enter the values of the tree nodes (Enter -1 to stop..)"<<endl;
