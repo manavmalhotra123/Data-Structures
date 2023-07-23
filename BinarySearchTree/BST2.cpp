@@ -15,6 +15,7 @@ public:
     }
 };
 
+// Function to insert a new node into the BST
 Node* InsertIntoBST(Node* root, int data)
 {
     if (root == nullptr)
@@ -22,14 +23,69 @@ Node* InsertIntoBST(Node* root, int data)
         root = new Node(data);
         return root;
     }
-    else if (root->data > data){
+    else if (root->data > data)
+    {
         root->L = InsertIntoBST(root->L, data);
     }
     else
     {
         root->R = InsertIntoBST(root->R, data);
     }
-    
+
+    return root;
+}
+
+// Function to delete a node from the BST
+Node* DeleteNodeFromBST(Node* root, int data)
+{
+    if (root == nullptr)
+    {
+        // The node to delete is not found, do nothing
+        return root;
+    }
+    else if (data < root->data)
+    {
+        // The node to delete is in the left subtree
+        root->L = DeleteNodeFromBST(root->L, data);
+    }
+    else if (data > root->data)
+    {
+        // The node to delete is in the right subtree
+        root->R = DeleteNodeFromBST(root->R, data);
+    }
+    else
+    {
+        // Node to delete is found
+
+        // Case 1: Node with one child or no child
+        if (root->L == nullptr)
+        {
+            Node* temp = root->R;
+            delete root;
+            return temp;
+        }
+        else if (root->R == nullptr)
+        {
+            Node* temp = root->L;
+            delete root;
+            return temp;
+        }
+
+        // Case 2: Node with two children
+        // Find the inorder successor (smallest node in the right subtree)
+        Node* temp = root->R;
+        while (temp->L != nullptr)
+        {
+            temp = temp->L;
+        }
+
+        // Copy the inorder successor's data to this node
+        root->data = temp->data;
+
+        // Delete the inorder successor node
+        root->R = DeleteNodeFromBST(root->R, temp->data);
+    }
+
     return root;
 }
 
@@ -48,5 +104,16 @@ int main(int argc, char const *argv[])
     cout<<"Enter the values of the tree nodes (Enter -1 to stop..)"<<endl;
     Node* root = nullptr;
     TakeInput(root);
+
+    // Example of how to delete a node
+    int value_to_delete;
+    cout << "Enter the value of the node to delete: ";
+    cin >> value_to_delete;
+
+    root = DeleteNodeFromBST(root, value_to_delete);
+
+    // Display the BST after deletion (You can implement a display function for this purpose)
+    // ...
+
     return 0;
 }
