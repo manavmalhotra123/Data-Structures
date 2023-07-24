@@ -147,6 +147,56 @@ bool isValidate(Node* root)
 // ---------------- validating done --------------
 
 
+//--------- LCA --------------
+Node* LowestCommonAncestor(Node* root, Node* p, Node* q){
+    // Base case
+    if (root == nullptr)
+    {
+        return nullptr;
+    }
+
+    // check for p node and q node
+    if (root->data == p->data)
+    {
+        return root;
+    }
+    if (root->data == q->data)
+    {
+        return root;
+    }
+    
+    Node* Left = LowestCommonAncestor(root->L,p,q);
+    Node* Right = LowestCommonAncestor(root->R,p,q);
+
+    if (Left == nullptr && Right == nullptr)
+    {
+        return nullptr;
+    }
+    
+    if (Left != nullptr && Right == nullptr)
+    {
+        return Left;
+    }
+    
+    if (Left == nullptr && Right != nullptr)
+    {
+        return Right;
+    }
+    
+    if (Left != nullptr && Right != nullptr)
+    {
+        return root;
+    }
+    
+    return root;
+    
+
+
+
+       
+}
+
+
 int main(int argc, char const *argv[])
 {
     cout<<"Enter the values of the tree nodes (Enter -1 to stop..)"<<endl;
