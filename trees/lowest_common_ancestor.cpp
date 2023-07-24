@@ -84,7 +84,7 @@ TreeNode* lowest_ancestor(TreeNode *root, TreeNode *p, TreeNode *q)
         return root;
     }
 
-    // if dono upar waale cases mai se kuch nhi mila to left ka answer nikaal le
+    // if dono upar waale case s ma i se kuch nhi mila to left ka answer nikaal le
     TreeNode *Left = lowest_ancestor(root->L, p, q);
     // right ka answer nikaal le
     TreeNode *Right = lowest_ancestor(root->R, p, q);
