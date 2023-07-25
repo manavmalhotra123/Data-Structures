@@ -59,7 +59,52 @@ void LevelOrderTraversal(Node *root)
             Q.push(temp->R);
         }
     }
+}
+
+vector<int> SpiralTraversal(Node*root)
+{
+    // to store the final results 
+    vector<int> spiral;
+
+    // Queue to maintain the levels 
+    queue<Node*> Q;
+
+    // bool to keep the check from right or from left 
+    bool LeftToRight = true; // as first level is from left always
+
+    // first element ko push krdiya queue mai 
+    Q.push(root);
     
+    while (!Q.empty())
+    {
+        int number_of_nodes = Q.size();
+
+        for (int i = 0; i < number_of_nodes; i++)
+        {
+            Node* temp = Q.front();
+            Q.pop();
+
+            if (LeftToRight) // jab left to right jaana ho 
+            {
+                spiral.push_back(temp->data);
+            }
+            else  // right to left jaana ho 
+            {
+                spiral.insert(spiral.begin(), temp->data); // value adding at the start of the queue
+            }
+            if (temp->L)
+            {
+                Q.push(temp->L);
+            }
+            if (temp->R)
+            {
+                Q.push(temp->R);
+            }
+            // side change krdi 
+            LeftToRight = !LeftToRight;
+        }
+    }
+    return spiral;
 }
 
 int main(int argc, char const *argv[])
