@@ -91,6 +91,17 @@ public:
       }
     }
   }
+
+  // show heap function
+  void ShowHeap()
+  {
+    cout<<"Heap:"<<endl;
+    for (int i = 0; i < size; i++)
+    {
+      cout<<array[i]<<" ";
+    }
+    cout<<endl;
+  }
 };
 
 int main()
@@ -104,22 +115,14 @@ int main()
   h.array[5] = 45;
   h.size = 5;
 
-  cout << "Printing the heap..." << endl;
-  for (int i = 0; i <= h.size; i++)
-  {
-    cout << h.array[i] << " ";
-  }
-  cout << endl;
+  h.ShowHeap();
 
   // inserting the value in heap
   h.Insert(110);
 
-  cout << "Printing the heap..." << endl;
-  for (int i = 0; i <= h.size; i++)
-  {
-    cout << h.array[i] << " ";
-  }
-  cout << endl;
+  h.ShowHeap();
 
+  h.Insert(57);
+  h.ShowHeap();
   return 0;
 }
