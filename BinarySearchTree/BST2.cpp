@@ -132,11 +132,11 @@ bool solve(Node *root, int lowerBound, int upperBound)
     bool LeftAnswer = solve(root->L, lowerBound, root->data);
     bool RightAnswer = solve(root->R, root->data, upperBound);
 
-    return LeftAnswer && RightAnswer;
+    return LeftAnswer && RightAnswer; 
 }
 
 bool isValidate(Node* root)
-{
+{ 
     // Use the minimum and maximum possible values for 'int'
     int lowerBound = INT16_MAX;
     int upperBound = INT16_MIN;
