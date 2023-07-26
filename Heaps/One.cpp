@@ -49,14 +49,16 @@ suppose 57 insert krna hai heap mai
     / \   /
    5  10 40
 
+---- Deletion in heap is always done from top ---
+Step 1: delete krdo 
+Step 2: replace last value with root node
+Step 3: ab sabhi values ko uski shi jgh pr rkhdo 
 */
-
 using namespace std;
 
 class Heap
 {
 public:
-  // to do array based implementation
   int array[101];
   int size;
 
@@ -67,16 +69,12 @@ public:
 
   void Insert(int value)
   {
-    // value ko insert kro end mai
     size = size + 1;
     int index = size;
     array[index] = value;
 
-    // is value ko ab uski shi position pr leke jaana hai
-    // abhi toh yeh ek trah se last mai hai array ke
     while (index > 1)
     {
-      // parent se compare krte krte upr jana hai
       int ParentIndex = index / 2;
 
       if (array[index] > array[ParentIndex])
@@ -86,21 +84,61 @@ public:
       }
       else
       {
-        // loop se bhaar aaja bhai ab
         break;
       }
     }
   }
 
-  // show heap function
+  void Delete()
+  {
+    // Replace the first value with the last value
+    swap(array[1], array[size]);
+    // Decrease the size
+    size--;
+
+    // Correct the positions of each element
+    int index = 1;
+
+    while (index <= size)
+    {
+      int leftChildIndex = 2 * index;
+      int rightChildIndex = 2 * index + 1;
+      int largest = index; // Initialize the index of the largest element as the root (current index)
+
+      // Compare the left child with the current index
+      if (leftChildIndex <= size && array[leftChildIndex] > array[largest])
+      {
+        largest = leftChildIndex;
+      }
+
+      // Compare the right child with the current largest index
+      if (rightChildIndex <= size && array[rightChildIndex] > array[largest])
+      {
+        largest = rightChildIndex;
+      }
+
+      // If the largest element is not the root, then swap it with the correct child
+      if (largest != index)
+      {
+        swap(array[largest], array[index]);
+        index = largest;
+      }
+      else
+      {
+        // If the largest element is already the root, we're done
+        break;
+      }
+    }
+  }
+
   void ShowHeap()
   {
-    cout<<"Heap:"<<endl;
-    for (int i = 0; i < size; i++)
+    cout << "Heap: ";
+    for (int i = 1; i <= size; i++)
     {
-      cout<<array[i]<<" ";
+      cout << array[i] << " ";
     }
-    cout<<endl;
+    cout << endl;
   }
 };
 
@@ -117,12 +155,16 @@ int main()
 
   h.ShowHeap();
 
-  // inserting the value in heap
   h.Insert(110);
 
   h.ShowHeap();
 
   h.Insert(57);
   h.ShowHeap();
+
+  cout << "deletion ko dekhte huye..." << endl;
+  h.Delete();
+  h.ShowHeap();
+
   return 0;
 }
