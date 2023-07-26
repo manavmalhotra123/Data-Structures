@@ -1,60 +1,58 @@
 #include <iostream>
-#include <algorithm>
-
 using namespace std;
 
-void Heapify(int arr[], int size, int Index)
-{
-    int LeftChildIndex = 2 * Index;
-    int RightChildIndex = 2 * Index + 1;
-    int Largest = Index;
+void heapify(int arr[], int n, int i) {
+        int index = i;
+        int leftIndex = 2*i;
+        int rightIndex = 2*i+1;
+        int largest = index;
 
-    if (LeftChildIndex <= size && arr[Largest] < arr[LeftChildIndex])
-    {
-        Largest = LeftChildIndex;
-    }
+        if(leftIndex <= n && arr[largest] < arr[leftIndex]) {
+                largest = leftIndex;
+        }
+        if(rightIndex <= n && arr[largest] < arr[rightIndex]) {
+                largest = rightIndex;
+        }
 
-    if (RightChildIndex <= size && arr[Largest] < arr[RightChildIndex])
-    {
-        Largest = RightChildIndex;
-    }
-
-    if (Largest != Index)
-    {
-        swap(arr[Index], arr[Largest]);
-        Heapify(arr, size, Largest);
-    }
+        if(index != largest) {
+                //left ya right child me se koi > hogya currentNode se
+                swap(arr[index], arr[largest]);
+                index = largest;
+                heapify(arr, n, index);
+        }
 }
 
-void ConvertToHeap(int arr[], int size)
-{
-    for (int i = size / 2; i >= 1; i--)
-    {
-        Heapify(arr, size, i);
-    }
+void buildHeap(int arr[], int n) {
+        for(int i = n/2; i>0; i--) {
+                heapify(arr,n, i);
+        }
 }
 
-void Show(int arr[], int size)
-{
-    for (int i = 1; i <= size; i++)
-    {
-        cout << arr[i] << " ";
-    }
-    cout << endl;
+void heapSort(int arr[], int n) {
+        while(n != 1) {
+                swap(arr[1], arr[n--]);
+                heapify(arr,n,1);
+        }
 }
 
-int main()
-{
-    int arr[6];
-    arr[1] = 40;
-    arr[2] = 45;
-    arr[3] = 50;
-    arr[4] = 60;
-    arr[5] = 100;
+int main() {
+  int arr[] = {-1,12, 56, 43, 6, 78, 87, 5, 44, 3, 23, 32};
+  int n = 11;
+  buildHeap(arr, n);
 
-    Show(arr, 5);
-    ConvertToHeap(arr, 5);
-    Show(arr, 5);
+  cout << "printint the heap "<< endl;
+  for(int i=0; i<=n; i++) {
+          cout << arr[i] << " ";
+  }
+  cout << endl;
 
-    return 0;
+  heapSort(arr, n);
+
+  cout << endl << "printint the heap "<< endl;
+  for(int i=1; i<=n; i++) {
+          cout << arr[i] << " ";
+  }
+  cout << endl;
+
+  return 0;
 }
