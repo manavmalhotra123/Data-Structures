@@ -62,10 +62,13 @@ void buildHeap(int arr[], int size)
 // nye first element ko heapify krdo
 void HeapSort(int arr[], int size)
 {
-        for (int i = size; i > 0; i--)
+        int index = size;
+
+        while (index != 1)
         {
-                swap(arr[1], arr[i]);
-                Heapify(arr, size, i);
+                swap(arr[1], arr[index]);
+                size--;
+                Heapify(arr, size,index);
         }
 }
 
