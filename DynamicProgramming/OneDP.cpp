@@ -55,27 +55,28 @@ so, here we can apply DP
 // Top-down approach using memoization
 int TopDownSolve(int n, vector<int> &dp)
 {
-    if (n == 0)
+    // base Case
+    if (n == 0 || n == 1)
     {
-        return 0;
+        return n;
     }
-    else if (n == 1)
-    {
-        return 1;
-    }
+    // check kro ki array mai answer hai if hai toh kaam bn gya time bch gya 
     if (dp[n] != -1)
     {
         return dp[n];
     }
     else
     {
+        // nya ans bnaalo pichle do use krke jo already pde hai 
         dp[n] = TopDownSolve(n - 1, dp) + TopDownSolve(n - 2, dp);
     }
+    // ans ko return maar diya 
     return dp[n];
 }
 
 int FibDP(int n)
 {
+    // making Dp array here
     vector<int> Dparray(n+1,-1);
     return TopDownSolve(n, Dparray);
 } 
