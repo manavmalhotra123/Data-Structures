@@ -52,7 +52,7 @@ making it overlapping sub problem
 so, here we can apply DP
 */
 
-// Top-down approach using memoization
+// Top-down approach OR Recurssion with memoization
 int TopDownSolve(int n, vector<int> &dp)
 {
     // base Case
@@ -80,6 +80,15 @@ int FibDP(int n)
     vector<int> Dparray(n+1,-1);
     return TopDownSolve(n, Dparray);
 } 
+
+// Tabular Form 
+int SolveBottomUp()
+{
+    
+}
+
+
+
 
 int main(int argc, char const *argv[])
 {
