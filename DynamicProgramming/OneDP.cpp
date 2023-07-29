@@ -17,6 +17,7 @@ optimal sub solution -- optimal solution of the small problem
 */
 #include <iostream>
 #include <vector>
+#include <queue>
 
 using namespace std;
 // Fibonacci series Function F(n) = F(n-1) + F(n-2)
@@ -60,35 +61,61 @@ int TopDownSolve(int n, vector<int> &dp)
     {
         return n;
     }
-    // check kro ki array mai answer hai if hai toh kaam bn gya time bch gya 
+    // check kro ki array mai answer hai if hai toh kaam bn gya time bch gya
     if (dp[n] != -1)
     {
         return dp[n];
     }
     else
     {
-        // nya ans bnaalo pichle do use krke jo already pde hai 
+        // nya ans bnaalo pichle do use krke jo already pde hai
         dp[n] = TopDownSolve(n - 1, dp) + TopDownSolve(n - 2, dp);
     }
-    // ans ko return maar diya 
+    // ans ko return maar diya
     return dp[n];
 }
 
 int FibDP(int n)
 {
     // making Dp array here
-    vector<int> Dparray(n+1,-1);
+    vector<int> Dparray(n + 1, -1);
     return TopDownSolve(n, Dparray);
-} 
-
-// Tabular Form 
-int SolveBottomUp()
-{
-    
 }
 
+// Tabular Form - iterative kehlo
+int DPTopDown(int n)
+{
+    // Step 1: Dp array bnayo
+    vector<int> Dparray(n + 1, -1);
+    // Step 2: Base Case ko yhi handle krlo jo recursion mai mile the
+    Dparray[0] = 0;
+    Dparray[1] = 1;
 
+    // Step 3: Iteration krdo
+    for (int i = 2; i <= n; i++)
+    {
+        Dparray[i] = Dparray[i - 1] + Dparray[i - 2];
+    }
+    return Dparray[n];
+}
 
+// fib space optimised in bottom up
+int fibOptimised(int n)
+{
+    queue<int> Q;
+    Q.push(1);
+    Q.push(1);
+
+    for (int i = 2; i <= n; i++)
+    {
+        int temp = Q.front();
+        Q.pop();
+        int ans = Q.front() + temp;
+        Q.push(ans);
+    }
+
+    return Q.front();
+}
 
 int main(int argc, char const *argv[])
 {
@@ -100,6 +127,13 @@ int main(int argc, char const *argv[])
 
     // Using top-down approach (with memoization)
     int DPResult = FibDP(n);
-    cout << "Using top-down approach: " <<DPResult<<endl;
+    cout << "Using top-down approach: " << DPResult << endl;
+
+    int BottomUpDp = DPTopDown(n);
+    cout << "Using bottom-up approach: " << BottomUpDp << endl;
+
+    int fibOpt = fibOptimised(9);
+    cout << "Using Space Optimised: " << fibOptimised << endl;
+
     return 0;
 }

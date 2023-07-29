@@ -35,7 +35,7 @@ int DPSolve(int n, vector<int> &dp)
     }
 }
 
-int factorialDynamics(int n)
+int factorialDynamics(int n) // Time Complexity O(2n)r
 {
     vector<int> Dp(n + 1, -1);
     Dp[0] = 1;
@@ -43,6 +43,39 @@ int factorialDynamics(int n)
     int ans = DPSolve(n, Dp);
     return ans;
 }
+
+
+
+// optimized version of factorial using Dp and constant space 
+int factorialOptimized(int n)
+{
+    int result = 1;
+
+    for (int i = 2; i <= n; i++)
+    {
+        result *= i;
+    }
+
+    return result;
+}
+
+
+// factorial using Bottom Up DP - O(N) time
+int factorialDownUpDP(int n)
+{
+    vector<int> Dp(n + 1, -1);
+    Dp[0] = 1;
+    Dp[1] = 1;
+
+    for (int i = 2; i <= n; i++)
+    {
+        Dp[i] = i*Dp[i-1];
+    }
+    return Dp[n];
+}
+
+
+
 
 int main(int argc, char const *argv[])
 {
@@ -53,5 +86,11 @@ int main(int argc, char const *argv[])
     int dp = factorialDynamics(n);
     cout << "factorial using Dynamic Programming " << dp << endl;
 
+    int bottomup = factorialDownUpDP(n);
+    cout << "bottomup using Dynamic Programming " << bottomup << endl;
+ 
+ 
+    int factopt = factorialOptimized(n);
+    cout << "factorial using Dynamic Programming " << factopt << endl;
     return 0;
 }
