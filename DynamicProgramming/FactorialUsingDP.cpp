@@ -7,6 +7,9 @@
 
 using namespace std;
 
+// nhi lgegi dp isme 
+
+// factorial recursion 
 int factorialrecurssion(int n)
 {
     if (n == 0 || n == 1)
