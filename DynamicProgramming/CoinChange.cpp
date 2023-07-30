@@ -46,7 +46,6 @@ int coinchange(vector<int> &coins, int target)
     return coinRecursion(coins, target, coins.size() - 1);
 }
 
-
 int coinChangeDP(vector<int> &coins, int target)
 {
     int number_of_coins = coins.size();
@@ -68,7 +67,6 @@ int coinChangeDP(vector<int> &coins, int target)
 
     return dp[target];
 }
-
 
 int main(int argc, char const *argv[])
 {
