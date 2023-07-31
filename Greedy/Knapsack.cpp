@@ -5,7 +5,6 @@ Your goal is to determine the maximum total value you can carry in your knapsack
 a subset of the items to fit into it without exceeding its capacity.
 */
 
-
 #include <iostream>
 #include <vector>
 #include <algorithm>
@@ -16,20 +15,21 @@ using namespace std;
 struct Item {
     int value;
     int weight;
+    double valuePerWeight; // Store value-to-weight ratio
 
-    Item(int v, int w) : value(v), weight(w) {}
+    Item(int v, int w) : value(v), weight(w), valuePerWeight(static_cast<double>(v) / w) {}
 };
 
-// Comparator to create a max heap based on item values
+// Comparator to create a max heap based on item value-to-weight ratio
 struct CompareItem {
     bool operator()(const Item& a, const Item& b) {
-        return a.value < b.value;
+        return a.valuePerWeight < b.valuePerWeight;
     }
 };
 
 // Function to solve the knapsack problem using a greedy approach with max heap
 int knapsackGreedy(int weight[], int value[], int n, int capacity) {
-    // Create a max heap to store items based on their value
+    // Create a max heap to store items based on their value-to-weight ratio
     priority_queue<Item, vector<Item>, CompareItem> maxHeap;
     for (int i = 0; i < n; ++i) {
         maxHeap.push(Item(value[i], weight[i]));
@@ -40,7 +40,7 @@ int knapsackGreedy(int weight[], int value[], int n, int capacity) {
 
     // Process items one by one until the knapsack is full or no more items
     while (!maxHeap.empty() && remainingCapacity > 0) {
-        // Get the item with the highest value from the max heap
+        // Get the item with the highest value-to-weight ratio from the max heap
         Item item = maxHeap.top();
         maxHeap.pop();
 
