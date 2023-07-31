@@ -63,15 +63,31 @@ int topDownDP(int weight[], int value[], int index, int capacity, vector<vector<
   return dp[index][capacity];
 }
 
-
 int topDownDP(int wt[], int val[], int n, int cap)
 {
   // create a dp array
   // 2-D dp array bna liya jisko -1 se initiate kr diya
   vector<vector<int>> dp(n + 1, vector<int>(cap + 1, -1));
 
-  int answer = topDownDP(wt, val, n, cap, dp);
+  int answer = topDownDP(wt, val, n - 1, cap, dp);
   return answer;
+}
+
+// Using Bottom Up Approach - tabulation method
+int knapsackTabular(int weight[], int value[], int n, int capacity) {
+    vector<vector<int>> dp(n + 1, vector<int>(capacity + 1, 0));
+
+    for (int i = 1; i <= n; i++) {
+        for (int w = 1; w <= capacity; w++) {
+            if (weight[i - 1] <= w) {
+                dp[i][w] = max(value[i - 1] + dp[i - 1][w - weight[i - 1]], dp[i - 1][w]);
+            } else {
+                dp[i][w] = dp[i - 1][w];
+            }
+        }
+    }
+
+    return dp[n][capacity];
 }
 
 int main()
@@ -87,8 +103,11 @@ int main()
   // vector<vector<int> > dp(n, vector<int>(capacity+1 , -1));
   // int ans = solveUsingMem(weight, value, n-1, capacity, dp);
 
-  int ans = topDownDP(weight, value, n - 1, capacity);
-  cout << "Ans: " << ans << endl;
+  int ans = topDownDP(weight, value, n, capacity); // Corrected the function call here
+  cout << "Ans using top-down DP: " << ans << endl;
+
+  int a = knapsackTabular(weight, value, n, capacity); // Corrected the function call here
+  cout << "Ans using tabular method: " << a << endl;
 
   return 0;
 }
