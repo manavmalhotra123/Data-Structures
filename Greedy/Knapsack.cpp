@@ -5,9 +5,11 @@ Your goal is to determine the maximum total value you can carry in your knapsack
 a subset of the items to fit into it without exceeding its capacity.
 */
 
+
 #include <iostream>
 #include <vector>
 #include <algorithm>
+#include <queue>
 
 using namespace std;
 
@@ -18,26 +20,37 @@ struct Item {
     Item(int v, int w) : value(v), weight(w) {}
 };
 
-int knapsackGreedy(int weight[], int value[], int n, int capacity) {
-    vector<Item> items;
-    for (int i = 0; i < n; ++i) {
-        items.push_back(Item(value[i], weight[i]));
+// Comparator to create a max heap based on item values
+struct CompareItem {
+    bool operator()(const Item& a, const Item& b) {
+        return a.value < b.value;
     }
+};
 
-    // Sort items based on their value-to-weight ratio in descending order
-    sort(items.begin(), items.end(), [](const Item& a, const Item& b) {
-        return static_cast<double>(a.value) / a.weight > static_cast<double>(b.value) / b.weight;
-    });
+// Function to solve the knapsack problem using a greedy approach with max heap
+int knapsackGreedy(int weight[], int value[], int n, int capacity) {
+    // Create a max heap to store items based on their value
+    priority_queue<Item, vector<Item>, CompareItem> maxHeap;
+    for (int i = 0; i < n; ++i) {
+        maxHeap.push(Item(value[i], weight[i]));
+    }
 
     int totalValue = 0;
     int remainingCapacity = capacity;
 
-    for (const Item& item : items) {
+    // Process items one by one until the knapsack is full or no more items
+    while (!maxHeap.empty() && remainingCapacity > 0) {
+        // Get the item with the highest value from the max heap
+        Item item = maxHeap.top();
+        maxHeap.pop();
+
+        // If the item's weight fits in the remaining capacity, add it completely
         if (item.weight <= remainingCapacity) {
             totalValue += item.value;
             remainingCapacity -= item.weight;
         } else {
-            // Fractional part of item
+            // If the item's weight exceeds the remaining capacity,
+            // add a fraction of it to maximize the total value
             double fraction = static_cast<double>(remainingCapacity) / item.weight;
             totalValue += static_cast<int>(item.value * fraction);
             break; // Knapsack is full, no need to consider other items
