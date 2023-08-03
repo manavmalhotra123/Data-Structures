@@ -16,7 +16,7 @@ int solveUsingRecursion(int weight[], int value[], int index, int capacity)
       return 0;
   }
 
-  // include and exclude
+  // include and excludeS
   int include = 0;
   if (weight[index] <= capacity)
     include = value[index] + solveUsingRecursion(weight, value, index - 1, capacity - weight[index]);
