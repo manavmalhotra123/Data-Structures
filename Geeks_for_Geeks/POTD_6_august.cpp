@@ -1,3 +1,6 @@
+// Finding the permutations of the string 
+
+
 class Solution{
     public:
         void permutations(string str, int i, int n,vector<string>&v)
