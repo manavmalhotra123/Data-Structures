@@ -1,94 +1,136 @@
-// Adjacency List Implementation
-
-
 #include <iostream>
 #include <vector>
+#include <algorithm>
+#include <queue>
+#include <stack>
+#include <map>
+#include <unordered_map>
+#include <set>
+#include <unordered_set>
 #include <list>
 
 using namespace std;
 
-void Show(const vector<list<int>>& adjList)
+class Graph
 {
-    for (int i = 0; i < adjList.size(); i++)
+private:
+    // unordered_map is used here : insertion time : O(1)
+    unordered_map<int, list<int>> AdjacencyList;
+
+public:
+    void AddEdge(int start, int end, bool direction)
     {
-        cout << "Node " << i << " -> ";
-        for (const int& neighbor : adjList[i])
+        // if direction is false then undirected
+        // if direction is true then directed edge
+
+        // start mai end ko insert kr diya chahe directed hai ya indirected
+        AdjacencyList[start].push_back(end);
+
+        // if undirected then end to start bhi add krna hoga
+        if (direction == false)
         {
-            cout << neighbor << " ";
+            AdjacencyList[end].push_back(start);
         }
-        cout << endl;
     }
-}
 
-void DirectedGraph()
+    void ShowAdjacencyList()
+    {
+        for (auto iterator : AdjacencyList)
+        {
+            cout << iterator.first << " : ";
+            for (auto i : iterator.second)
+            {
+                cout << i << " ";
+            }
+            cout << endl;
+        }
+    }
+};
+
+class WeightedGraph
 {
-    int n;
-    cout << "Enter the number of nodes: ";
-    cin >> n;
+private:
+    // using unordered_map to store the graph
+    unordered_map<int, list<pair<int, int>>> AdjacencyList;
 
-    vector<list<int>> adjList(n);
-
-    int e;
-    cout << "Enter the number of edges: ";
-    cin >> e;
-    for (int i = 0; i < e; i++)
+public:
+    // add edge function
+    void AddEdge(int start, int end, int weight, bool direction)
     {
-        int start, end;
-        cout << "Enter the start node: ";
-        cin >> start;
-        cout << "Enter the end node: ";
-        cin >> end;
-        adjList[start].push_back(end);
+        AdjacencyList[start].push_back({end, weight});
+        // if directed
+        if (direction == false)
+        {
+            AdjacencyList[end].push_back({start, weight});
+        }
     }
 
-    cout << "Adjacency list: " << endl;
-    Show(adjList);
-}
+    void ShowAdjacencyList()
+    {
+        for (auto iterator : AdjacencyList)
+        {
+            cout << iterator.first << " : ";
+            for (auto i : iterator.second)
+            {
+                cout << "(" << i.first << "," << i.second << "),";
+            }
+            cout << endl;
+        }
+    }
+};
 
-void UnDirectedGraph()
+int main()
 {
-    int n;
-    cout << "Enter the number of nodes: ";
-    cin >> n;
+    Graph directedGraph;
 
-    vector<list<int>> adjList(n);
+    directedGraph.AddEdge(0, 1, true);
+    directedGraph.AddEdge(0, 2, true);
+    directedGraph.AddEdge(1, 2, true);
+    directedGraph.AddEdge(2, 0, true);
+    directedGraph.AddEdge(2, 3, true);
+    directedGraph.AddEdge(3, 3, true);
 
-    int e;
-    cout << "Enter the number of edges: ";
-    cin >> e;
-    for (int i = 0; i < e; i++)
-    {
-        int start, end;
-        cout << "Enter the start node: ";
-        cin >> start;
-        cout << "Enter the end node: ";
-        cin >> end;
-        adjList[start].push_back(end);
-        adjList[end].push_back(start);  // For undirected graph, add edge in both directions
-    }
-    
-    cout << "Adjacency list: " << endl;
-    Show(adjList);
-}
+    cout << "Directed Graph:" << endl;
+    directedGraph.ShowAdjacencyList();
+    cout << endl;
 
-int main(int argc, char const *argv[])
-{
-    char choice;
-    cout << "Enter U for undirected graph and D for directed graph.." << endl;
-    cin >> choice;
+    Graph undirectedGraph;
 
-    if (choice == 'U')
-    {
-        UnDirectedGraph();
-    }
-    else if (choice == 'D')
-    {
-        DirectedGraph();
-    }
-    else
-    {
-        cout << "Invalid choice!" << endl;
-    }
+    undirectedGraph.AddEdge(0, 1, false);
+    undirectedGraph.AddEdge(0, 2, false);
+    undirectedGraph.AddEdge(1, 2, false);
+    undirectedGraph.AddEdge(2, 0, false);
+    undirectedGraph.AddEdge(2, 3, false);
+    undirectedGraph.AddEdge(3, 3, false);
+
+    cout << "Undirected Graph:" << endl;
+    undirectedGraph.ShowAdjacencyList();
+    cout << endl;
+
+    WeightedGraph weightedDirectedGraph;
+
+    weightedDirectedGraph.AddEdge(0, 1, 5, true);
+    weightedDirectedGraph.AddEdge(0, 2, 3, true);
+    weightedDirectedGraph.AddEdge(1, 2, 2, true);
+    weightedDirectedGraph.AddEdge(2, 0, 8, true);
+    weightedDirectedGraph.AddEdge(2, 3, 7, true);
+    weightedDirectedGraph.AddEdge(3, 3, 6, true);
+
+    cout << "Weighted Directed Graph:" << endl;
+    weightedDirectedGraph.ShowAdjacencyList();
+    cout << endl;
+
+    WeightedGraph weightedUndirectedGraph;
+
+    weightedUndirectedGraph.AddEdge(0, 1, 5, false);
+    weightedUndirectedGraph.AddEdge(0, 2, 3, false);
+    weightedUndirectedGraph.AddEdge(1, 2, 2, false);
+    weightedUndirectedGraph.AddEdge(2, 0, 8, false);
+    weightedUndirectedGraph.AddEdge(2, 3, 7, false);
+    weightedUndirectedGraph.AddEdge(3, 3, 6, false);
+
+    cout << "Weighted Undirected Graph:" << endl;
+    weightedUndirectedGraph.ShowAdjacencyList();
 
     return 0;
 }
