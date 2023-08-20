@@ -157,6 +157,40 @@ void UnDirectedGraph()
     Show(Matrix);
 }
 
+
+
+void WeightedDirectedGraph()
+{
+    int n;
+    cout << "Enter the number of nodes: ";
+    cin >> n;
+
+    cout << "Empty Adjacency matrix.." << endl;
+    vector<vector<int>> Matrix(n, vector<int>(n, 0));
+    Show(Matrix);
+
+    int e;
+    cout << "Enter the number of edges: ";
+    cin >> e;
+    for (int i = 0; i < e; i++)
+    {
+        int start;
+        int end;
+        int weight;
+        cout << "Enter the start node: ";
+        cin >> start;
+        cout << "Enter the end node: ";
+        cin >> end;
+        cout << "Enter the weight: ";
+        cin >> weight;
+        Matrix[start][end] = weight;
+    }
+
+    cout << "Adjacency matrix: " <<endl;
+    Show(Matrix);
+}
+
+
 int main(int argc, char const *argv[])
 {
     char choice;
