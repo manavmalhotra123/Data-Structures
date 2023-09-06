@@ -51,6 +51,7 @@
         "map": "cpp",
         "bitset": "cpp",
         "regex": "cpp",
-        "valarray": "cpp"
+        "valarray": "cpp",
+        "unordered_set": "cpp"
     }
 }
